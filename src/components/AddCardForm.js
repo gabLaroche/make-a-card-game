@@ -11,7 +11,7 @@ const AddCardForm = props => {
     }
 
     return (
-        <div className="card">
+        <div className="card add-card">
             <form
                 onSubmit={event => {
                     event.preventDefault();
@@ -24,12 +24,15 @@ const AddCardForm = props => {
                 <textarea name="text" value={card.text} onChange={handleInputChange}>
             </textarea>
                 <div>
-                    <input type="radio" id="whiteCard" name="type" value="0" onChange={handleInputChange} />
-                    <label htmlFor="whiteCard">White Card</label>
-                    <input type="radio" id="blackCard" name="type" value="1" onChange={handleInputChange} />
-                    <label htmlFor="blackCard">Black Card</label>
+                    <div>
+                        <input type="radio" id="whiteCard" name="type" value="0" onChange={handleInputChange} />
+                        <label htmlFor="whiteCard">White Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="blackCard" name="type" value="1" onChange={handleInputChange} />
+                        <label htmlFor="blackCard">Black Card</label>
+                    </div>
                 </div>
-                <button type="reset">Cancel</button>
                 <button>Add</button>
             </form>
         </div>

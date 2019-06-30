@@ -4,7 +4,7 @@ const CardGame = props => (
     <div className='container'>
     {props.cards.length > 0 ? (
                 props.cards.map(card => (
-                <div className="card" data-card-type={card.type}>
+                <div key={card.id} className="card" data-card-type={card.type.toString()}>
                     <p>
                         {card.text}
                     </p>

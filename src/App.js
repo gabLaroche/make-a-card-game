@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import CardGame from './tables/CardGame'
-import AddCardForm from './forms/AddCardForm'
-import EditCardForm from './forms/EditCardForm'
+import React, { useState, useEffect } from 'react';
+import CardGame from './components/CardGame'
+import AddCardForm from './components/AddCardForm'
+import EditCardForm from './components/EditCardForm'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 function App() {
-  const cardsData = [
-      {id: 1, text: 'Example White Card', type: 0},
-      {id: 2, text: 'Example Black Card', type: 1},
-  ];
+  const cardsData = JSON.parse(window.localStorage.getItem('cards')) || [];
 
   // type : 0 = white card, 1 : black card
   const initialFormState = {id: null, text: '', type: null};
@@ -15,6 +14,9 @@ function App() {
   const [cards, setCards] = useState(cardsData);
   const [editing, setEditing] = useState(false);
   const [currentCard, setCurrentCard] = useState(initialFormState);
+  useEffect(() => {
+      window.localStorage.setItem('cards', JSON.stringify(cards));
+  });
 
   const editRow = card => {
     setEditing(true);
@@ -39,23 +41,63 @@ function App() {
     setCards(cards.filter(card => card.id !== id));
   };
 
+  const deleteAllCards = () => {
+      setCards(cards.filter(card => card.id === -1));
+  };
+
+  const printGame = () => {
+      window.print();
+  };
+
   const GameButtons = () => {
-    if (cardsData.length > 0) {
+    if (cards.length > 0) {
       return <div className='buttons-container'>
-          <button>Print</button>
-          <button>Start over</button>
+          <button onClick={printGame}>Print Game</button>
+          <button onClick={openModal}>Start over</button>
       </div>;
     }
     return '';
   };
+
+  const openModal = () => {
+      confirmAlert({
+          message: 'Are you sure you want to start over?',
+          buttons: [
+              {
+                  label: 'Yes',
+                  onClick: () => deleteAllCards()
+              },
+              {
+                  label: 'No'
+              }
+          ]
+      })
+      /*confirmAlert({
+          customUI: ({ onClose }) => {
+              return (
+                  <div className="modal">
+                      <p>Are you sure you want to start over?</p>
+                      <button onClick={onClose}>No</button>
+                      <button onClick={() => {
+                          deleteAllCards();
+                          onClose();
+                      }}>Yes</button>
+                  </div>
+              )
+          }
+      })*/
+  };
+
   return (
     <div className="App">
-      <h1>Easily make your own card game</h1>
-      <p>when making a card you have the option to make white or black card,
-        I don’t put any meaning to them, make your game all white cards,
-        all black cards, or both. I put two colours so if you wanted to
-        make a game like cards against humanity or superfight, you could!
-      </p>
+        <div className="hero">
+          <h1>Easily make your own card game</h1>
+          <p>when making a card you have the option to make white or black card,
+            I don’t put any meaning to them, make your game all white cards,
+            all black cards, or both. I put two colours so if you wanted to
+            make a game like cards against humanity or superfight, you could!
+          </p>
+        </div>
       <GameButtons/>
       <div className="container">
         {editing ? (

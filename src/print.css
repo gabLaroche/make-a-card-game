@@ -1,0 +1,13 @@
+@media print {
+    button {
+        display: none;
+    }
+
+    .hero {
+        display: none;
+    }
+
+    .add-card {
+        display: none;
+    }
+}

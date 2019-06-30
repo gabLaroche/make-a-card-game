@@ -23,15 +23,19 @@ const EditCardForm = props => {
                 }}
             >
                 <label className="visuallyHidden">Card prompt</label>
-                <textarea name="text" value={card.text} onChange={handleInputChange}>
+                <textarea name="text" value={card.text} maxLength="180" onChange={handleInputChange}>
             </textarea>
                 <div>
-                    <input type="radio" id="whiteCard" name="type" value="0" onChange={handleInputChange} />
-                    <label htmlFor="whiteCard">White Card</label>
-                    <input type="radio" id="blackCard" name="type" value="1" onChange={handleInputChange} />
-                    <label htmlFor="blackCard">Black Card</label>
+                    <div>
+                        <input type="radio" id="whiteCard" name="type" value="0" checked={card.type === "0"} onChange={handleInputChange} />
+                        <label htmlFor="whiteCard">White Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="blackCard" name="type" value="1" checked={card.type === "1"} onChange={handleInputChange} />
+                        <label htmlFor="blackCard">Black Card</label>
+                    </div>
                 </div>
-                <button>Update user</button>
+                <button>Update card</button>
                 <button onClick={() => props.setEditing(false)}>
                     Cancel
                 </button>

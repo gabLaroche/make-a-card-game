@@ -25,7 +25,7 @@ const EditCardForm = props => {
                 <label className="visuallyHidden">Card prompt</label>
                 <textarea name="text" value={card.text} maxLength="180" onChange={handleInputChange}>
             </textarea>
-                <div>
+                <div className="radio-container">
                     <div>
                         <input type="radio" id="whiteCard" name="type" value="0" checked={card.type === "0"} onChange={handleInputChange} />
                         <label htmlFor="whiteCard">White Card</label>
@@ -35,10 +35,15 @@ const EditCardForm = props => {
                         <label htmlFor="blackCard">Black Card</label>
                     </div>
                 </div>
-                <button>Update card</button>
-                <button onClick={() => props.setEditing(false)}>
-                    Cancel
-                </button>
+                <div className="edit-buttons">
+                    <button>Update card</button>
+                    <button onClick={() => props.setEditing(false)}>
+                        Cancel
+                    </button>
+                    <button onClick={() => {
+                        props.deleteCard(card.id);
+                    }} className="btn-destructive">Delete Card</button>
+                </div>
             </form>
         </div>
     )

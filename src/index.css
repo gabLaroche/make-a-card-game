@@ -1,6 +1,7 @@
 @import "print.css";
 :root {
   --font-family: sans-serif;
+  --color-delete: #91210b;
 }
 
 body,html {
@@ -55,6 +56,14 @@ p {
   text-align: center;
 }
 
+.buttons-container {
+  margin-bottom: 1rem;
+}
+
+.buttons-container button {
+  margin: 0 1rem;
+}
+
 .card {
   width: 230px;
   height: 330px;
@@ -73,8 +82,8 @@ textarea {
   min-width: 200px;
   max-width: 200px;
 
-  max-height: 207px;
-  min-height: 207px;
+  max-height: 160px;
+  min-height: 160px;
   font-family: var(--font-family);
 }
 .visuallyHidden {
@@ -85,12 +94,41 @@ textarea {
   clip: rect(1px, 1px, 1px, 1px);
 }
 .card p {
-  height: 240px;
+  height: 210px;
   word-break: break-all;
 }
 
+.radio-container {
+  margin: 0.5rem 0;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.edit-buttons .btn-destructive {
+  margin: 0.5rem auto 0;
+}
 button {
-cursor: pointer;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  font-weight: 600;
+  background: none;
+  transition: all ease 350ms;
+}
+
+button:hover {
+  transform: scale(0.95);
+}
+
+.btn-destructive {
+  color: #FFFFFF;
+  border-color: var(--color-delete);
+  background: var(--color-delete);
 }
 
 .card[data-card-type="0"] {
@@ -100,5 +138,9 @@ cursor: pointer;
 
 .card[data-card-type="1"] {
   background: #000000;
+  color: #FFFFFF;
+}
+.card[data-card-type="1"] button {
+  border-color: #FFFFFF;
   color: #FFFFFF;
 }

@@ -21,9 +21,9 @@ const AddCardForm = props => {
                     setCard(initialFormState);
                 }}>
                 <label className="visuallyHidden">Card prompt</label>
-                <textarea name="text" value={card.text} onChange={handleInputChange}>
+                <textarea name="text" value={card.text} maxLength="180" onChange={handleInputChange}>
             </textarea>
-                <div>
+                <div className="radio-container">
                     <div>
                         <input type="radio" id="whiteCard" name="type" value="0" onChange={handleInputChange} />
                         <label htmlFor="whiteCard">White Card</label>

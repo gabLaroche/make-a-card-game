@@ -53,7 +53,7 @@ function App() {
     if (cards.length > 0) {
       return <div className='buttons-container'>
           <button onClick={printGame}>Print Game</button>
-          <button onClick={openModal}>Start over</button>
+          <button onClick={openModal} className="btn-destructive">Start over</button>
       </div>;
     }
     return '';
@@ -72,20 +72,6 @@ function App() {
               }
           ]
       })
-      /*confirmAlert({
-          customUI: ({ onClose }) => {
-              return (
-                  <div className="modal">
-                      <p>Are you sure you want to start over?</p>
-                      <button onClick={onClose}>No</button>
-                      <button onClick={() => {
-                          deleteAllCards();
-                          onClose();
-                      }}>Yes</button>
-                  </div>
-              )
-          }
-      })*/
   };
 
   return (
